@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Layout, ShoppingBag } from "lucide-react";
+import { Github, Layout, ShoppingBag } from "lucide-react";
 
 const projects = [
   {
@@ -32,48 +32,49 @@ const projects = [
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-24 relative">
+    <section id="projects" className="py-28 relative">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <p className="font-mono text-primary text-sm mb-2 tracking-widest uppercase">
+          <p className="font-mono text-primary/80 text-xs mb-3 tracking-[0.3em] uppercase">
             Portfólio
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-14 tracking-tight">
             Projetos em destaque<span className="text-gradient">.</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-5">
           {projects.map((project, i) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="group relative rounded-2xl bg-card border border-border p-6 md:p-8 card-shadow hover:border-primary/30 transition-all duration-300"
+              transition={{ delay: i * 0.12, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              whileHover={{ y: -3, transition: { duration: 0.25 } }}
+              className="group relative rounded-2xl bg-card border border-border/60 p-7 md:p-8 card-shadow hover:border-primary/20 hover:shadow-[0_8px_40px_-8px_hsl(200_80%_55%_/_0.08)] transition-all duration-400"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="p-3 rounded-xl bg-secondary">
-                  <project.icon className="w-5 h-5 text-primary" />
+              <div className="flex items-start justify-between mb-5">
+                <div className="p-2.5 rounded-lg bg-secondary/80">
+                  <project.icon className="w-4 h-4 text-primary/80" />
                 </div>
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  className="text-muted-foreground/50 hover:text-foreground transition-colors duration-300"
                   aria-label={`GitHub - ${project.title}`}
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-4 h-4" />
                 </a>
               </div>
 
-              <h3 className="text-xl font-semibold mb-3 text-foreground">
+              <h3 className="text-lg font-heading font-semibold mb-3 text-foreground tracking-tight">
                 {project.title}
               </h3>
               <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
@@ -84,17 +85,17 @@ const ProjectsSection = () => {
                 {project.techs.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 text-xs rounded-full bg-secondary text-primary font-mono"
+                    className="px-2.5 py-1 text-[10px] rounded-md bg-secondary/60 text-primary/80 font-mono tracking-wider uppercase"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
 
-              <ul className="space-y-1.5">
+              <ul className="space-y-2">
                 {project.highlights.map((h) => (
-                  <li key={h} className="text-sm text-muted-foreground flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                  <li key={h} className="text-sm text-muted-foreground flex items-center gap-2.5">
+                    <span className="w-1 h-1 rounded-full bg-primary/60 flex-shrink-0" />
                     {h}
                   </li>
                 ))}
